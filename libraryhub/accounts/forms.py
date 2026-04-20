@@ -1,0 +1,18 @@
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from catalogue.models import Member
+
+
+class CustomUserCreationForm(UserCreationForm):
+    """Extended user creation form with email, first name, last name, and membership type."""
+    
+    membership_type = forms.ChoiceField(
+        choices=Member.MEMBERSHIP_CHOICES,
+        required=True,
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
