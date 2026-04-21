@@ -10,7 +10,7 @@ class CustomUserCreationForm(UserCreationForm):
     membership_type = forms.ChoiceField(
         choices=Member.MEMBERSHIP_CHOICES,
         required=True,
-        widget=forms.Select(attrs={'class': 'form-control'})
+        widget=forms.Select()
     )
     
     class Meta:
